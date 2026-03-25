@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int choice, qty;
+    double total = 0;
+
+    do {
+        cout << "\n1. Laptop - 50000";
+        cout << "\n2. Mobile - 20000";
+        cout << "\n3. Headphones - 2000";
+        cout << "\n4. Shoes - 3000";
+        cout << "\n5. Exit";
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter quantity: ";
+                cin >> qty;
+                total += qty * 50000;
+                break;
+            case 2:
+                cout << "Enter quantity: ";
+                cin >> qty;
+                total += qty * 20000;
+                break;
+            case 3:
+                cout << "Enter quantity: ";
+                cin >> qty;
+                total += qty * 2000;
+                break;
+            case 4:
+                cout << "Enter quantity: ";
+                cin >> qty;
+                total += qty * 3000;
+                break;
+            case 5:
+                break;
+            default:
+                cout << "Invalid choice";
+        }
+    } while(choice != 5);
+
+    cout << "\nTotal Amount: " << total;
+    return 0;
+}
