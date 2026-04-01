@@ -1,6 +1,42 @@
 #include <iostream>
 using namespace std;
 
+class Product {
+protected:
+    double price;
+
+public:
+    Product(double p) {
+        price = p;
+    }
+
+    virtual double calculateTotal(int qty) {
+        return price * qty;
+    }
+
+    virtual ~Product() {}
+};
+
+class Laptop : public Product {
+public:
+    Laptop() : Product(50000) {}
+};
+
+class Mobile : public Product {
+public:
+    Mobile() : Product(20000) {}
+};
+
+class Headphones : public Product {
+public:
+    Headphones() : Product(2000) {}
+};
+
+class Shoes : public Product {
+public:
+    Shoes() : Product(3000) {}
+};
+
 int main() {
     int choice, qty;
     double total = 0;
@@ -14,34 +50,37 @@ int main() {
         cout << "\nEnter choice: ";
         cin >> choice;
 
+        Product* p = NULL;
+
         switch(choice) {
             case 1:
-                cout << "Enter quantity: ";
-                cin >> qty;
-                total += qty * 50000;
+                p = new Laptop();
                 break;
             case 2:
-                cout << "Enter quantity: ";
-                cin >> qty;
-                total += qty * 20000;
+                p = new Mobile();
                 break;
             case 3:
-                cout << "Enter quantity: ";
-                cin >> qty;
-                total += qty * 2000;
+                p = new Headphones();
                 break;
             case 4:
-                cout << "Enter quantity: ";
-                cin >> qty;
-                total += qty * 3000;
+                p = new Shoes();
                 break;
             case 5:
                 break;
             default:
                 cout << "Invalid choice";
         }
+
+        if (choice >= 1 && choice <= 4) {
+            cout << "Enter quantity: ";
+            cin >> qty;
+            total += p->calculateTotal(qty);
+            delete p;
+        }
+
     } while(choice != 5);
 
     cout << "\nTotal Amount: " << total;
+
     return 0;
 }
